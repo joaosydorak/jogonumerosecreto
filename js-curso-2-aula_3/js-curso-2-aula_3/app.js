@@ -20,33 +20,45 @@ function sortear() {
     let sorteados = [];
     let numero;
 
-    if (quantidade <= ate) {
+    if (quantidade >= ate) {
 
-        for (let i = 0; i < quantidade; i++) {
+        alert('O quantidade de numeros não pode ser maior que o limite maximo, favor corrigir');
+        return;
 
 
-            numero = obterNumeroAleatorio(de, ate);
+    } else {
 
-            while (sorteados.includes(numero)) {
+        let diferenca = (ate - de);
+
+        if (quantidade > diferenca) {
+
+            alert('O quantidade de numeros não pode ser maior que a distancia entre o minimo e maximo, favor corrigir');
+            return;
+
+        } else {
+
+
+            for (let i = 0; i < quantidade; i++) {
+
+
 
                 numero = obterNumeroAleatorio(de, ate);
 
+                while (sorteados.includes(numero)) {
+
+                    numero = obterNumeroAleatorio(de, ate);
+
+
+                }
+
+                sorteados.push(numero);
+                document.getElementById("sorteados").innerHTML = `Os numeros sorteados foram: ${sorteados}`;
 
             }
 
-            sorteados.push(numero);
-
+            alterarStatusBotao();
 
         }
-
-        document.getElementById("sorteados").innerHTML = `Os numeros sorteados foram: ${sorteados}`;
-        alterarStatusBotao();
-    } else {
-        alert('O quantidade de numeros não pode ser maior que o limite maximo, favor corrigir');
-        reiniciar();
-        alterarStatusBotao();
-
-
     }
 
 
